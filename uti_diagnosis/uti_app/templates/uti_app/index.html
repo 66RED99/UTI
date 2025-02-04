@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UTI Diagnosis Prediction</title>
+    <style>
+        .form-container { max-width: 600px; margin: 20px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 8px; }
+        button { background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        .result { margin-top: 20px; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>UTI Diagnosis Prediction</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <h2>Result: {{ result }}</h2>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
